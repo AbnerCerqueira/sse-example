@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSE Example</title>
+  </head>
+  <body>
+    <div id="messages"></div>
+
+    <script>
+      const eventSource = new EventSource('http://localhost:3333/stream')
+
+      eventSource.onopen = () => {
+        console.log('conexão estabelecida')
+      }
+      
+      eventSource.onmessage = (event) => {
+        const div = document.getElementById('messages')
+        div.innerHTML += `<p>${event.data}</p>`
+
+        eventSource.onerror = () => {
+          console.error('erro na conexão SSE')
+          eventSource.close()
+        }
+      }
+    </script>
+  </body>
+</html>

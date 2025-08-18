@@ -10,20 +10,19 @@ app.get('/stream', (request, reply) => {
     'access-control-allow-origin': '*',
   })
 
-  let count = 0
   const interval = setInterval(() => {
     const randomNumber = Math.floor(Math.random() * 11)
 
     console.log('numero sorteado', randomNumber)
 
-    if (randomNumber === 5) {
+    if (randomNumber % 2 === 0) {
+      reply.raw.write('event: even\n')
       reply.raw.write(`data: ${randomNumber}\n\n`)
-      count += 1
+      return
     }
 
-    if (count === 5) {
-      reply.raw.end()
-    }
+    reply.raw.write('event: odd\n')
+    reply.raw.write(`data: ${randomNumber}\n\n`)
   }, 1000)
 
   request.raw.on('close', () => {

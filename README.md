@@ -4,7 +4,7 @@ Server-Sent-Events serve para comunicação unidirecional em tempo real do servi
 https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
 
 ## Meu exemplo
-O meu servidor vai randomizar números de 0 a 10 e enviar para o cliente apenas quando o número sorteado for 5
+O servidor irá sortear um número de 0 a 10 e responder o número sorteado e se ele é impar ou par, esse exemplo da pra ser traduzido em uma situação real onde tenho eventos diferentes no mesmo endpoint e quero avisar para o client qual desses eventos que ocorreu
 
 ## Rodar
 
